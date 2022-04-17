@@ -89,6 +89,7 @@ play.addEventListener('click', () => {
   if(play.classList.contains('play') === true){
     return;
   }
+  startTime = Date.now();
   effect.start();
   play.classList.add('play');
   sentenceNumber = playList.pop();
