@@ -1,0 +1,377 @@
+body{
+  margin:0;
+}
+#form{
+  margin-top:8px;
+  margin-left:8px;
+}
+#exp{
+  display: none;
+  margin:0;
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background-color: black;
+}
+input{
+	display: inline-block;
+  font-size:20px;
+  height: 35px;
+  margin-right: 5px;
+}
+.btn{
+	text-decoration: none;
+	color:white;
+  cursor: pointer;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+.btn:hover{
+  opacity: 0.8;
+}
+#startBtn{
+	max-width: 300px;
+	display: inline-block;
+	text-align: left;
+	margin: 0 auto;
+	color:white;
+	border-radius: 10px;
+	background-color: limegreen;
+	font-size:20px;
+	text-decoration: none;
+	font-weight: bold;
+	position:relative;
+	padding: 8px 32px 8px 16px;
+	cursor:pointer;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+#startBtn:before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border: 0;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -6px;
+}
+#startBtn:hover{
+	opacity: 0.8;
+}
+
+/* 実験 */
+#playBtn{
+  display: block;
+  position: absolute;
+  width: 50vh;
+  height: 50vh;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  cursor: pointer;
+  background-color: gray;
+  border-radius: 50%;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+#playBtn::before {
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-25%,-50%);
+    width: 0px;
+    height: 0px;
+    border: 15vh solid transparent;
+    border-left: 25vh solid white;
+    box-sizing: border-box;
+    content: "";
+}
+
+#playBtn:hover{
+	opacity: 0.8;
+}
+
+.inPlay::before{
+  display:none;
+}
+
+.play{
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.pulse{
+  border: 0vh solid gray;
+  animation: pulse 1.4s linear infinite;
+}
+
+.breath{
+  animation: breath 2.5s infinite ease-in-out alternate;
+}
+
+#spin{
+  display: none;
+  width: 50vh;
+  height: 50vh;
+  border: 1.25vh white solid;
+  border-top: 1.25vh gray solid;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: sp-anime 1.0s infinite linear;
+}
+
+#load,#load::before,#load::after{
+  background-color: white;
+  animation: load 1.0s infinite ease-in-out;
+  height:25vh;
+  width: 6vh;
+}
+#load::before,#load::after{
+  position: absolute;
+  content:"";
+}
+
+#load::before{
+  left:-10vh;
+  animation-delay: -0.32s;
+}
+#load::after{
+  left:10vh;
+}
+
+#load{
+  display:none;
+  color:white;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  animation-delay: -0.16s;
+}
+
+
+@keyframes sp-anime {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes breath{
+  0%{opacity:0.8;}
+  50%{opacity: 0.3;}
+  100%{opacity: 0.8;}
+}
+@keyframes pulse{
+  0%{
+    /* transform:translate(-50%,-50%) scale(1,1); */
+    border: 0vh solid gray;
+    /* background-color: gray; */
+  }
+  100%{
+    /* transform:translate(-50%,-50%) scale(2,2);
+    background-color: black; */
+    border: 50vh solid black;
+  }
+}
+@keyframes load{
+  0%,80%,100%{
+    box-shadow:0 0;
+    height: 25vh;
+  }
+  40%{
+    box-shadow:0 -3vh;
+    height:28vh;
+  }
+}
+
+/* 解答 */
+#answerForm{
+  display: none;
+  top:50%;
+  left:50%;
+  position:absolute;
+  transform:translate(-50%,-50%);
+}
+.list{
+  margin-top:20px;
+  color:whitesmoke;
+  font-size:25px;
+  font-weight: bold;
+  align-content: space-between;
+  display:flex;
+  flex-flow:column;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+.list label{
+  margin-top:10px;
+  display: inline-block;
+  position:relative;
+  cursor:pointer;
+  width:400px;
+  padding-left: 40px;
+}
+.list .select::before,
+.list .select::after{
+  content: "";
+  display:block;
+  border-radius: 50%;
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+}
+.list .select::before{
+  border:3px solid gray;
+  width:20px;
+  height:20px;
+  left:5px;
+}
+.list .select::after{
+  opacity:0;
+  background-color: gray;
+  width: 16px;
+  height: 16px;
+  left:10px;
+}
+
+input[type=radio]:checked + .select::after{
+  opacity: 1;
+}
+
+input[type=radio]{
+  display: none;
+}
+
+#nextBtn{
+	width: 50px;
+	display: block;
+	text-align: left;
+	margin: 0 auto;
+  margin-top:20px;
+	color:white;
+	border-radius: 10px;
+	background-color: green;
+	font-size:25px;
+	text-decoration: none;
+	font-weight: bold;
+	position:relative;
+	padding: 8px 32px 8px 16px;
+	cursor:pointer;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
+#nextBtn:before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  margin-top: -6px;
+}
+#nextBtn:hover{
+	opacity: 0.8;
+}
+
+/* 条件 */
+.conditions{
+  margin-top:10px;
+  margin-left:20px;
+  font-size:20px;
+}
+.conditionName{
+  font-weight: bold;
+  margin-top:15px;
+}
+.conditionSelect{
+  padding-left:10px;
+  display:flex;
+  padding-left:30px;
+}
+.conditionSelect label{
+  position: relative;
+  margin-right:35px;
+  padding-left:5px;
+  cursor:pointer;
+}
+.conditions .select::before,
+.conditions .select::after{
+  content: "";
+  display:block;
+  border-radius: 50%;
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+}
+.conditions .select::before{
+  border:1px solid blue;
+  width:18px;
+  height:18px;
+  left:-20px;
+}
+.conditions .select::after{
+  opacity:0;
+  background-color: blue;
+  width: 14px;
+  height: 14px;
+  left:-17px;
+}
+
+input[type="range"]{
+  height: 30px;
+  margin:0;
+}
+
+.slider{
+  display: flex;
+  height: 30px;
+  margin-left:20px;
+}
+.slider>div{
+  padding-left: 10px;
+}
+
+#answerCondition{
+  display:none;
+}
+
+.notSelect{
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+#showAnswerBtn{
+  display:block;
+  position: absolute;
+  text-align: center;
+  line-height: 9vh;
+  font-size:7vh;
+  font-weight: bold;
+  width: 25vh;
+  height: 8vh;
+  padding:1.5vh 0;
+  top:80%;
+  left: 50%;
+  border-radius: 5vh;
+  transform:translateX(-50%);
+  background-color: green;
+  display:none;
+}

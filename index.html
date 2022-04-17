@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <div id="form">
+    <input id="userName" type="text" placeholder="被験者名" required>
+    <div id="startBtn">実験開始</div>
+    <div class="conditions">
+      <div class="conditionName">サウンドが流れている間の動作</div>
+      <div class="conditionSelect">
+        <label for="effect1">
+          <input type="radio" name="effect" value="spin" id="effect1" checked>
+          <div class="select">スピン</div>
+        </label>
+        <label for="effect2">
+          <input type="radio" name="effect" value="load" id="effect2">
+          <div class="select">ロード</div>
+        </label>
+        <label for="effect3">
+          <input type="radio" name="effect" value="breath" id="effect3">
+          <div class="select">呼吸</div>
+        </label>
+        <label for="effect4">
+          <input type="radio" name="effect" value="pulse" id="effect4">
+          <div class="select">波及</div>
+        </label>
+      </div>
+      <div class="conditionName">合図が鳴るまでの秒数</div>
+      <label class="slider">
+        <input type="range" name="playWait" min="0" max="10" id="playWaitTime" value="2">
+        <div id="playWaitTimeText"></div>
+      </label>
+      <div class="conditionName">回答の表示タイミング</div>
+      <div class="conditionSelect">
+        <label for="showAnswer1">
+          <input type="radio" name="showAnswer" value="after" id="showAnswer1" checked>
+          <div class="select">音声後</div>
+        </label>
+        <label for="showAnswer2">
+          <input type="radio" name="showAnswer" value="default" id="showAnswer2">
+          <div class="select">再生ボタンと同時</div>
+        </label>
+      </div>
+
+      <div id="answerCondition">
+        <div class="conditionName">回答への移行方法</div>
+        <div class="conditionSelect">
+          <label for="moveAnswer1">
+            <input type="radio" name="moveAnswer" value="1" id="moveAnswer1" checked>
+            <div class="select">自動</div>
+          </label>
+          <label for="moveAnswer2">
+            <input type="radio" name="moveAnswer" value="2" id="moveAnswer2">
+            <div class="select">ユーザ操作</div>
+          </label>
+        </div>
+        <div class="conditionName">回答の表示までの秒数</div>
+        <label class="slider">
+          <input type="range" name="showAnswerTime" min="0" max="10" id="showAnswerTime" value="0">
+          <div id="showAnswerTimeText"></div>
+        </label>
+      </div>
+      <div class="conditionName">問題数</div>
+      <label class="slider">
+        <input type="range" name="question" min="1" max="3" id="questionNumber" value="1">
+        <div id="questionNumberText"></div>
+      </label>
+    </div>
+  </div>
+  <div id="exp">
+    <div id="playBtn">
+      <div id="spin"></div>
+      <div id="load"></div>
+    </div>
+    <div id="showAnswerBtn" class="btn">回答</div>
+    <div id="answerForm">
+      <div class="list">
+        <label for="radio1">
+          <input type="radio" name="answer" value="1" id="radio1">
+          <div class="select">とてもポジティブ</div>
+        </label>
+        <label for="radio2">
+          <input type="radio" name="answer" value="2" id="radio2">
+          <div class="select">ポジティブ</div>
+        </label>
+        <label for="radio3">
+          <input type="radio" name="answer" value="3" id="radio3">
+          <div class="select">どちらかといえばポジティブ</div>
+        </label>
+        <label for="radio4">
+          <input type="radio" name="answer" value="4" id="radio4">
+          <div class="select">どちらでもない</div>
+        </label>
+        <label for="radio5">
+          <input type="radio" name="answer" value="5" id="radio5">
+          <div class="select">どちらかといえばネガティブ</div>
+        </label>
+        <label for="radio6">
+          <input type="radio" name="answer" value="6" id="radio6">
+          <div class="select">ネガティブ</div>
+        </label>
+        <label for="radio7">
+          <input type="radio" name="answer" value="7" id="radio7">
+          <div class="select">とてもネガティブ</div>
+        </label>
+        <label for="radio8">
+          <input type="radio" name="answer" value="-1" id="radio8">
+          <div class="select">理解できなかった</div>
+        </label>
+      </div>
+      <div id="nextBtn">次へ</div>
+    </div> 
+  </div>
+
+  <script type="text/javascript" src="javascript/conditions.js"></script>
+  <script type="text/javascript" src="javascript/script.js"></script>
+  <!-- <script type="text/javascript" src="javascript/timeError.js"></script> -->
+</body>
+</html>
