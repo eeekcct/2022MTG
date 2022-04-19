@@ -196,6 +196,7 @@ class PlayAfterAuto {
       play.style.display = 'none';
       play.classList.remove('play');
       answerForm.style.display = 'block';
+      pushData('showAnswer', '');
     },this.showAnswerTime * 1000);
   }
   nextAnswer() {
@@ -219,6 +220,7 @@ class PlayAfterManual {
     window.setTimeout(() => {
       effect.end();
       showAnswerBtn.style.display = 'block';
+      pushData('showAnswer', '');
     },this.moveAnswerTime * 1000);
   }
   nextAnswer() {
