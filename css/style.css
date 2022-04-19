@@ -160,6 +160,24 @@ input{
   animation-delay: -0.16s;
 }
 
+#playback,#playback::before{
+  background-color: white;
+  height:25vh;
+  width: 5vh;
+}
+#playback{
+  display:none;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(50%,-50%);
+}
+#playback::before{
+  content:"";
+  position:absolute;
+  left: -10vh;
+}
+
 
 @keyframes sp-anime {
   100% {
