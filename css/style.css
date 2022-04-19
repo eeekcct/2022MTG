@@ -1,6 +1,13 @@
 body{
   margin:0;
 }
+.hideCursor{
+  cursor:none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+}
 #form{
   margin-top:8px;
   margin-left:8px;
@@ -240,6 +247,10 @@ input{
   cursor:pointer;
   width:400px;
   padding-left: 40px;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
 .list .select::before,
 .list .select::after{

@@ -96,6 +96,7 @@ play.addEventListener('click', () => {
   pushData('clickPlayStart', '');
 
   effect.start();
+  document.body.classList.add('hideCursor');
   play.classList.add('play');
   const musicName = 'mp3/'+ sentenceNumber + 'ban.mp3';
 
@@ -197,6 +198,7 @@ class PlayAfterAuto {
       play.classList.remove('play');
       answerForm.style.display = 'block';
       pushData('showAnswer', '');
+      document.body.classList.remove('hideCursor');
     },this.showAnswerTime * 1000);
   }
   nextAnswer() {
@@ -221,6 +223,7 @@ class PlayAfterManual {
       effect.end();
       showAnswerBtn.style.display = 'block';
       pushData('showAnswer', '');
+      document.body.classList.remove('hideCursor');
     },this.moveAnswerTime * 1000);
   }
   nextAnswer() {
@@ -242,6 +245,7 @@ class DefaultShowAnswer{
     play.classList.remove('play');
     play.classList.add('notSelect');
     answerForm.classList.remove('notSelect');
+    document.body.classList.remove('hideCursor');
   }
   nextAnswer() {
     play.classList.remove('notSelect');
