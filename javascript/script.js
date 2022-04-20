@@ -7,6 +7,7 @@ const play = document.getElementById('playBtn');
 const nextBtn = document.getElementById('nextBtn');
 const answerForm = document.getElementById('answerForm');
 const showAnswerBtn = document.getElementById('showAnswerBtn');
+const gazePoint = document.getElementById('gazePoint');
 
 const startMusic = new Audio('mp3/start.mp3');
 const columns = ['index','userName','sentence','event','value','computerTimeStamp'];
@@ -58,6 +59,7 @@ startBtn.addEventListener('click', () => {
   //expData.push(columns);
   form.style.display = 'none';
   exp.style.display = 'block';
+  showGazePoint();
   userName = document.getElementById('userName').value;
   expData.push([userName,'','startExp','',expStartTime]);
   formReset(); 
@@ -152,6 +154,18 @@ nextBtn.addEventListener('click',()=>{
   }
 });
 
+function showGazePoint(){
+  answerForm.style.display = 'none';
+  play.style.display = 'none';
+  gazePoint.style.display = 'block';
+  document.body.classList.add('hideCursor');
+  window.setTimeout(()=>{
+    document.body.classList.remove('hideCursor');
+    gazePoint.style.display = 'none';
+    play.style.display = 'block';
+  },2000);
+}
+
 function formReset(){
   const forms = document.getElementsByName('answer');
   for (const i of forms){
@@ -202,8 +216,9 @@ class PlayAfterAuto {
     },this.showAnswerTime * 1000);
   }
   nextAnswer() {
-    answerForm.style.display = 'none';
-    play.style.display = 'block';
+    // answerForm.style.display = 'none';
+    // play.style.display = 'block';
+    showGazePoint();
   }
   endExp() {
   }
@@ -227,8 +242,9 @@ class PlayAfterManual {
     },this.moveAnswerTime * 1000);
   }
   nextAnswer() {
-    answerForm.style.display = 'none';
-    play.style.display = 'block';
+    // answerForm.style.display = 'none';
+    // play.style.display = 'block';
+    showGazePoint();
   }
   endExp() {
   }

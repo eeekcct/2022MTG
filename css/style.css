@@ -404,3 +404,26 @@ input[type="range"]{
   background-color: green;
   display:none;
 }
+
+/* 注視点 */
+#gazePoint,#gazePoint::before{
+  position: absolute;
+  color:white;
+  background-color: whitesmoke;
+}
+#gazePoint{
+  display: 'block';
+  height: 50vh;
+  width:12vh;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+#gazePoint::before{
+  content: "";
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  height: 12vh;
+  width:50vh;
+}
