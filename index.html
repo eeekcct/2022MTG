@@ -9,6 +9,21 @@
     <input id="userName" type="text" placeholder="被験者名" required>
     <div id="startBtn">実験開始</div>
     <div class="conditions">
+      <div class="conditionName">実験のサウンド</div>
+      <div class="conditionSelect">
+        <label for="expSound1">
+          <input type="radio" name="expSound" value="practice" id="expSound1" checked>
+          <div class="select">練習</div>
+        </label>
+        <label for="expSound2">
+          <input type="radio" name="expSound" value="production" id="expSound2">
+          <div class="select">本番</div>
+        </label>
+        <label for="expSound3">
+          <input type="radio" name="expSound" value="silence" id="expSound3">
+          <div class="select">無音</div>
+        </label>
+      </div>
       <div class="conditionName">サウンドが流れている間の動作</div>
       <div class="conditionSelect">
         <label for="effect1">
@@ -75,6 +90,7 @@
     </div>
   </div>
   <div id="exp">
+    <div id="expStartBtn" class="btn">START</div>
     <div id="gazePoint"></div>
     <div id="playBtn">
       <div id="spin"></div>

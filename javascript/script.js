@@ -8,11 +8,12 @@ const nextBtn = document.getElementById('nextBtn');
 const answerForm = document.getElementById('answerForm');
 const showAnswerBtn = document.getElementById('showAnswerBtn');
 const gazePoint = document.getElementById('gazePoint');
+const expStart = document.getElementById('expStartBtn');
 
-const startMusic = new Audio('mp3/start.mp3');
+const startMusic = new Audio('audio/start.wav');
 const columns = ['index','userName','sentence','event','value','computerTimeStamp'];
 const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
-let volume = 0.5;
+let volume = 0.2;
 let playList = [];
 let expData = [];
 let userName='';
@@ -21,6 +22,7 @@ let sentenceNumber='';
 let effect;
 let playCondition;
 let playMusic;
+let dir;
 
 window.onload = () => {
   nameReset();
@@ -28,6 +30,9 @@ window.onload = () => {
   setShowAnswerTime(showAnswerTime.value);
   setQuestionNumber(questionNumber.value);
   changeAnswerCondition(showAnswer1.checked);
+  expSound.forEach((e) => {
+    if (e.checked) changeMaxQuestionNumber(e.value);
+  });
 };
 
 Array.prototype.shuffle = function() {
@@ -42,7 +47,6 @@ Array.prototype.shuffle = function() {
 }
 
 startBtn.addEventListener('click', () => {
-  const expStartTime = Date.now();
   document.body.requestFullscreen();
   expData = [];
   expData.push([]);
@@ -52,16 +56,20 @@ startBtn.addEventListener('click', () => {
   playList = [];
   let i = questionNumber.value;
   while (i > 0) {
-    playList.push(i--);
+    if (dir == 'silence') {
+      playList.push(0);
+      i--;
+    }
+    else {
+      playList.push(i--);
+    }
   }
   playList.shuffle();
   console.log(playList);
   //expData.push(columns);
   form.style.display = 'none';
   exp.style.display = 'block';
-  showGazePoint();
   userName = document.getElementById('userName').value;
-  expData.push([userName,'','startExp','',expStartTime]);
   formReset(); 
 
   for (const e of document.getElementsByName('effect')) {
@@ -79,6 +87,16 @@ startBtn.addEventListener('click', () => {
       }
     }
   }
+  gazePoint.style.display = 'none';
+  answerForm.style.display = 'none';
+  play.style.display = 'none';
+  expStart.style.display = 'block';
+});
+expStart.addEventListener('click', (e) => {
+  const expStartTime = Date.now();
+  expData.push([userName,'','startExp','',expStartTime]);
+  e.target.style.display = 'none';
+  showGazePoint();
   if (document.getElementById('showAnswer2').checked === true) {
     playCondition = new DefaultShowAnswer();
   }
@@ -100,10 +118,10 @@ play.addEventListener('click', () => {
   effect.start();
   document.body.classList.add('hideCursor');
   play.classList.add('play');
-  const musicName = 'mp3/'+ sentenceNumber + 'ban.mp3';
+  const musicName = 'audio/'+dir+'/'+sentenceNumber+'.wav';
 
   playMusic = new Audio(musicName);
-  playMusic.volume = 0.7 * volume;
+  playMusic.volume = soundValue[dir] * volume;
   startMusic.volume = 0.4 * volume;
   playMusic.addEventListener('play', () => {
     pushData('playSentence', '');
@@ -136,7 +154,6 @@ nextBtn.addEventListener('click',()=>{
     }
   }
   if(flag === true){
-    playCondition.nextAnswer();
     // expData.push([userName,sentenceNumber,value,sentenceStartTime]);
     pushData('answer', value);
     sentenceNumber = '';
@@ -151,10 +168,14 @@ nextBtn.addEventListener('click',()=>{
       makeResultFile();
       nameReset();
     }
+    else {
+      playCondition.nextAnswer();
+    }
   }
 });
 
 function showGazePoint(){
+  pushData('showGazePoint', '');
   answerForm.style.display = 'none';
   play.style.display = 'none';
   gazePoint.style.display = 'block';

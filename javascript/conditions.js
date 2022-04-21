@@ -5,6 +5,13 @@ const showAnswerTime = document.getElementById("showAnswerTime");
 const questionNumber= document.getElementById("questionNumber");
 const showAnswer1 = document.getElementById("showAnswer1");
 const showAnswer2 = document.getElementById("showAnswer2");
+const expSound = document.getElementsByName("expSound")
+
+const soundValue = {
+  'practice': 0.7,
+  'production': 5.0,
+  'silence': 0.7,
+};
 
 playWaitTime.addEventListener('input', (e) => {
   setPlayWaitTime(e.target.value);
@@ -20,6 +27,11 @@ showAnswer1.addEventListener('input', (e) => {
 });
 showAnswer2.addEventListener('input', (e) => {
   document.getElementById('answerCondition').style.display='none';
+});
+expSound.forEach((e, i) => {
+  e.addEventListener('input', (e) => {
+    changeMaxQuestionNumber(e.target.value);
+  });
 });
 
 function setPlayWaitTime(val){
@@ -38,4 +50,15 @@ function changeAnswerCondition(val) {
   else {
     document.getElementById('answerCondition').style.display='none';
   }
+}
+function changeMaxQuestionNumber(val) {
+    dir = val;
+    if (val == 'practice') {
+      questionNumber.max = 3;
+      setQuestionNumber(questionNumber.value);
+    }
+    else {
+      questionNumber.max = 9;
+      setQuestionNumber(questionNumber.value);
+    }
 }
