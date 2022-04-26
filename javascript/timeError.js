@@ -7,5 +7,8 @@ startMusic.addEventListener('play', () => {
 });
 startMusic.addEventListener('ended', () => {
   pushData('endSign', '');
-  playMusic.play();
+  window.setTimeout(() => {
+    playMusic.play();
+  },1000)
+  // playMusic.play();
 });
