@@ -155,7 +155,6 @@ nextBtn.addEventListener('click',()=>{
     }
   }
   if(flag === true){
-    // expData.push([userName,sentenceNumber,value,sentenceStartTime]);
     pushData('answer', value);
     sentenceNumber = '';
     formReset(); 
