@@ -91,6 +91,7 @@ startBtn.addEventListener('click', () => {
   answerForm.style.display = 'none';
   play.style.display = 'none';
   expStart.style.display = 'block';
+  startMusic.volume = soundValue['start'] * volume;
 });
 expStart.addEventListener('click', (e) => {
   const expStartTime = Date.now();
@@ -122,7 +123,7 @@ play.addEventListener('click', () => {
 
   playMusic = new Audio(musicName);
   playMusic.volume = soundValue[dir] * volume;
-  startMusic.volume = 0.4 * volume;
+  // startMusic.volume = soundValue['start'] * volume;
   playMusic.addEventListener('play', () => {
     pushData('playSentence', '');
   });

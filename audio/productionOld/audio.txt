@@ -1,0 +1,9 @@
+1 pos1
+2 pos2
+3 pos3
+4 neu1
+5 neu2
+6 neu3
+7 neg1
+8 neg2
+9 neg3

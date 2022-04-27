@@ -8,9 +8,10 @@ const showAnswer2 = document.getElementById("showAnswer2");
 const expSound = document.getElementsByName("expSound")
 
 const soundValue = {
-  'practice': 0.7,
+  'start':2.0,
+  'practice': 2.5,
   'production': 5.0,
-  'silence': 0.7,
+  'silence': 0.0,
 };
 
 playWaitTime.addEventListener('input', (e) => {
