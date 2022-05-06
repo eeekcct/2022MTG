@@ -23,6 +23,7 @@ let effect;
 let playCondition;
 let playMusic;
 let dir;
+let howToPlay;
 
 window.onload = () => {
   nameReset();
@@ -98,6 +99,12 @@ expStart.addEventListener('click', (e) => {
   expData.push([userName,'','startExp','',expStartTime]);
   e.target.style.display = 'none';
   showGazePoint();
+  if (document.getElementById('howToPlay1').checked === true) {
+    howToPlay = new AutoPlay();
+  }
+  else {
+    howToPlay = new clickPlay();
+  }
   if (document.getElementById('showAnswer2').checked === true) {
     playCondition = new DefaultShowAnswer();
   }
@@ -113,36 +120,7 @@ play.addEventListener('click', () => {
   if(play.classList.contains('play') === true){
     return;
   }
-  sentenceNumber = playList.pop();
-  pushData('clickPlayStart', '');
-
-  effect.start();
-  document.body.classList.add('hideCursor');
-  play.classList.add('play');
-  const musicName = 'audio/'+dir+'/'+sentenceNumber+'.wav';
-
-  playMusic = new Audio(musicName);
-  playMusic.volume = soundValue[dir] * volume;
-  // startMusic.volume = soundValue['start'] * volume;
-  playMusic.addEventListener('play', () => {
-    pushData('playSentence', '');
-  });
-  playMusic.addEventListener('ended', () => {
-    pushData('endSentence', '');
-    playCondition.playEnd();
-  });
-  // playMusic.addEventListener('ended', () => {
-  //   play.style.display = 'none';
-  //   play.classList.remove('play');
-  //   effect.end();
-  //   answerForm.style.display = 'block';
-  // });
-  window.setTimeout(() => {
-    startMusic.play();
-    // window.setTimeout(() => {
-    //   playMusic.play();
-    // }, 1000);
-  },playWaitTime.value*1000);
+  played();
 });
 
 nextBtn.addEventListener('click',()=>{
@@ -174,6 +152,39 @@ nextBtn.addEventListener('click',()=>{
   }
 });
 
+function played() {
+  sentenceNumber = playList.pop();
+  pushData('clickPlayStart', '');
+
+  effect.start();
+  document.body.classList.add('hideCursor');
+  play.classList.add('play');
+  const musicName = 'audio/'+dir+'/'+sentenceNumber+'.wav';
+
+  playMusic = new Audio(musicName);
+  playMusic.volume = soundValue[dir] * volume;
+  // startMusic.volume = soundValue['start'] * volume;
+  playMusic.addEventListener('play', () => {
+    pushData('playSentence', '');
+  });
+  playMusic.addEventListener('ended', () => {
+    pushData('endSentence', '');
+    playCondition.playEnd();
+  });
+  // playMusic.addEventListener('ended', () => {
+  //   play.style.display = 'none';
+  //   play.classList.remove('play');
+  //   effect.end();
+  //   answerForm.style.display = 'block';
+  // });
+  window.setTimeout(() => {
+    startMusic.play();
+    // window.setTimeout(() => {
+    //   playMusic.play();
+    // }, 1000);
+  },playWaitTime.value*1000);
+}
+
 function showGazePoint(){
   pushData('showGazePoint', '');
   answerForm.style.display = 'none';
@@ -181,9 +192,10 @@ function showGazePoint(){
   gazePoint.style.display = 'block';
   document.body.classList.add('hideCursor');
   window.setTimeout(()=>{
-    document.body.classList.remove('hideCursor');
-    gazePoint.style.display = 'none';
-    play.style.display = 'block';
+    // document.body.classList.remove('hideCursor');
+    // gazePoint.style.display = 'none';
+    // play.style.display = 'block';
+    howToPlay.toPlay();
   },2000);
 }
 
@@ -323,5 +335,21 @@ class EffectClass{
   }
   end() {
     play.classList.remove(this.className);
+  }
+}
+
+class AutoPlay{
+  toPlay() {
+    document.body.classList.remove('hideCursor');
+    gazePoint.style.display = 'none';
+    play.style.display = 'block';
+    played();
+  }
+}
+class clickPlay{
+  toPlay() {
+    document.body.classList.remove('hideCursor');
+    gazePoint.style.display = 'none';
+    play.style.display = 'block';
   }
 }
