@@ -340,10 +340,13 @@ class EffectClass{
 
 class AutoPlay{
   toPlay() {
-    document.body.classList.remove('hideCursor');
     gazePoint.style.display = 'none';
     play.style.display = 'block';
-    played();
+    play.classList.add('notWorking');
+    window.setTimeout(() => {
+      play.classList.remove('notWorking');
+      played();
+    },1000);
   }
 }
 class clickPlay{

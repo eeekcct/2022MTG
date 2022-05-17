@@ -8,6 +8,9 @@ body{
 	    -ms-user-select: none;
 	        user-select: none;
 }
+.notWorking{
+  pointer-events: none;
+}
 #form{
   margin-top:8px;
   margin-left:8px;
@@ -247,6 +250,7 @@ input{
   cursor:pointer;
   width:400px;
   padding-left: 40px;
+  color:rgba(245,245,245,0.5);
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 	    -ms-user-select: none;
@@ -262,6 +266,7 @@ input{
   transform: translateY(-50%);
 }
 .list .select::before{
+  opacity:0.5;
   border:3px solid gray;
   width:20px;
   height:20px;
@@ -274,8 +279,14 @@ input{
   height: 16px;
   left:10px;
 }
+.list label:hover{
+  color:rgba(245,245,245,1.0);
+}
 
 input[type=radio]:checked + .select::after{
+  opacity: 1;
+}
+input[type=radio]:checked + .select::before{
   opacity: 1;
 }
 
