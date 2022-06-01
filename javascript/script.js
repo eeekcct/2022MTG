@@ -159,7 +159,14 @@ function played() {
   effect.start();
   document.body.classList.add('hideCursor');
   play.classList.add('play');
-  const musicName = 'audio/'+dir+'/'+sentenceNumber+'.MP3';
+  let ext = ''
+  if (dir === 'production') {
+    ext = '.MP3'
+  }
+  else {
+    ext = '.wav'
+  }
+  const musicName = 'audio/'+dir+'/'+sentenceNumber+ext;
 
   playMusic = new Audio(musicName);
   playMusic.volume = soundValue[dir] * volume;
