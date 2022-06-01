@@ -58,6 +58,10 @@ function changeMaxQuestionNumber(val) {
       questionNumber.max = 3;
       setQuestionNumber(questionNumber.value);
     }
+    else if (val == 'production') {
+      questionNumber.max = 40;
+      setQuestionNumber(questionNumber.value);
+    }
     else {
       questionNumber.max = 9;
       setQuestionNumber(questionNumber.value);
